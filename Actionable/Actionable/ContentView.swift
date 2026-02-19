@@ -8,17 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var count = 0
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing: 24) {
+            Text("Counter")
+                .font(.largeTitle.bold())
+
+            Text("\(count)")
+                .font(.system(size: 64, weight: .semibold, design: .rounded))
+                .monospacedDigit()
+
+            HStack(spacing: 16) {
+                Button("-1") {
+                    count -= 1
+                }
+                .buttonStyle(.borderedProminent)
+
+                Button("+1") {
+                    count += 1
+                }
+                .buttonStyle(.borderedProminent)
+            }
+
+            Button("Reset") {
+                count = 0
+            }
+            .buttonStyle(.bordered)
         }
         .padding()
     }
 }
 
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
